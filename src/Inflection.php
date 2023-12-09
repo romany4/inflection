@@ -9,7 +9,7 @@ class Inflection
     /**
      * @var Ruleset
      */
-    private $ruleset;
+    private Ruleset $ruleset;
 
     /**
      * @param Ruleset $ruleset
@@ -76,7 +76,6 @@ class Inflection
 
         return \implode(
             ' ',
-
             [
                 $this->inflectLastName($parsed['lastName'], $case, $gender),
                 $this->inflectFirstName($parsed['firstName'], $case, $gender),

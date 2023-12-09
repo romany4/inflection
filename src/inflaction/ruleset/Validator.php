@@ -1,4 +1,5 @@
 <?php
+
 namespace romany4\inflection\inflection\ruleset;
 
 use romany4\inflection\Inflection;
@@ -13,7 +14,7 @@ class Validator
      *
      * @return bool
      */
-    public function validate(array $rules) : bool
+    public function validate(array $rules): bool
     {
         if ($this->validateRootKeys($rules) === false) {
             return false;
@@ -47,7 +48,7 @@ class Validator
      *
      * @return bool
      */
-    public function validateRootKeys(array $rules) : bool
+    public function validateRootKeys(array $rules): bool
     {
         $availableKeys = inflection\Ruleset::getAvailableRootKeys();
 
@@ -68,7 +69,7 @@ class Validator
         return true;
     }
 
-    public function validateSecondKeys(array $rule) : bool
+    public function validateSecondKeys(array $rule): bool
     {
         $availableKeys = inflection\Ruleset::getAvailableSecondKeys();
 
@@ -81,7 +82,7 @@ class Validator
         return true;
     }
 
-    public function validateValueKeys(array $rule) : bool
+    public function validateValueKeys(array $rule): bool
     {
         $availableKeys = inflection\Ruleset::getAvailableValueKeys();
 
@@ -98,11 +99,10 @@ class Validator
             &&
             $this->validateValueKeyTags($rule) === true
             &&
-            $this->validateValueKeyGender($rule) === true
-        ;
+            $this->validateValueKeyGender($rule) === true;
     }
 
-    public function validateValueKeyTest(array $rule) : bool
+    public function validateValueKeyTest(array $rule): bool
     {
         if (\array_key_exists(inflection\Ruleset::VALUE_KEY_TEST, $rule) === false) {
             return true;
@@ -115,7 +115,7 @@ class Validator
         return true;
     }
 
-    public function validateValueKeyMods(array $rule) : bool
+    public function validateValueKeyMods(array $rule): bool
     {
         if (\array_key_exists(inflection\Ruleset::VALUE_KEY_MODS, $rule) === false) {
             return true;
@@ -128,7 +128,7 @@ class Validator
         return true;
     }
 
-    public function validateValueKeyTags(array $rule) : bool
+    public function validateValueKeyTags(array $rule): bool
     {
         if (\array_key_exists(inflection\Ruleset::VALUE_KEY_TAGS, $rule) === false) {
             return true;
@@ -141,7 +141,7 @@ class Validator
         return true;
     }
 
-    public function validateValueKeyGender(array $rule) : bool
+    public function validateValueKeyGender(array $rule): bool
     {
         $availableGenders = inflection\Ruleset::getAvailableGenders();
 

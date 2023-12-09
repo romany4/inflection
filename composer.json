@@ -19,8 +19,7 @@
         "php": "~8",
         "ext-json":     "*",
         "ext-mbstring": "*",
-        "symfony/yaml": "~5.0",
-        "cloudloyalty/petrovich-rules": "dev-master"
+        "symfony/yaml": "~5.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~8.5.3",
