@@ -1,10 +1,10 @@
 <?php
-namespace StaticallTest\Petrovich\Petrovich\Loader;
+namespace StaticallTest\inflection\inflection\Loader;
 
 use PHPUnit\Framework\TestCase;
 
-use Staticall\Petrovich\Petrovich\Ruleset;
-use Staticall\Petrovich\Petrovich\ValidationException;
+use romany4\inflection\inflection\Ruleset;
+use romany4\inflection\inflection\ValidationException;
 
 class InvalidRulesTest extends TestCase
 {

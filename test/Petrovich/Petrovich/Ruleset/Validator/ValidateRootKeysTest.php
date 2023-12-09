@@ -1,9 +1,9 @@
 <?php
-namespace StaticallTest\Petrovich\Petrovich\Ruleset;
+namespace StaticallTest\inflection\inflection\ruleset;
 
 use PHPUnit\Framework\TestCase;
 
-use Staticall\Petrovich\Petrovich\Ruleset;
+use romany4\inflection\inflection\Ruleset;
 
 class ValidateRootKeysTest extends TestCase
 {
@@ -12,7 +12,7 @@ class ValidateRootKeysTest extends TestCase
         $rootKeys = Ruleset::getAvailableRootKeys();
         $rules    = [];
 
-        $validator = new Ruleset\Validator();
+        $validator = new ruleset\Validator();
 
         static::assertFalse($validator->validateRootKeys($rules));
     }
@@ -26,7 +26,7 @@ class ValidateRootKeysTest extends TestCase
             $rules[$key . '_'] = [];
         }
 
-        $validator = new Ruleset\Validator();
+        $validator = new ruleset\Validator();
 
         static::assertFalse($validator->validateRootKeys($rules));
     }
@@ -41,7 +41,7 @@ class ValidateRootKeysTest extends TestCase
             $rules[$key . '_'] = [];
         }
 
-        $validator = new Ruleset\Validator();
+        $validator = new ruleset\Validator();
 
         static::assertFalse($validator->validateRootKeys($rules));
     }
@@ -57,7 +57,7 @@ class ValidateRootKeysTest extends TestCase
             break;
         }
 
-        $validator = new Ruleset\Validator();
+        $validator = new ruleset\Validator();
 
         static::assertTrue($validator->validateRootKeys($rules));
     }
@@ -71,7 +71,7 @@ class ValidateRootKeysTest extends TestCase
             $rules[$key] = [];
         }
 
-        $validator = new Ruleset\Validator();
+        $validator = new ruleset\Validator();
 
         static::assertTrue($validator->validateRootKeys($rules));
     }

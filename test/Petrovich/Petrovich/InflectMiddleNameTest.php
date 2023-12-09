@@ -1,53 +1,53 @@
 <?php
-namespace StaticallTest\Petrovich\Petrovich;
+namespace StaticallTest\inflection\inflection;
 
 use PHPUnit\Framework\TestCase;
 
-use Staticall\Petrovich\Petrovich;
+use romany4\inflection\Inflection;
 
 class InflectMiddleNameTest extends TestCase
 {
     public function testWithoutMiddleNameRules()
     {
-        $ruleset = Petrovich\Loader::load(Petrovich\Loader::getVendorRulesFilePath());
+        $ruleset = inflection\Loader::load(inflection\Loader::getVendorRulesFilePath());
 
         $rules = $ruleset->getRules();
 
-        unset($rules[Petrovich\Ruleset::ROOT_KEY_MIDDLENAME]);
+        unset($rules[inflection\Ruleset::ROOT_KEY_MIDDLENAME]);
 
         $ruleset->setRules($rules, false);
 
-        $petrovich = new Petrovich($ruleset);
+        $petrovich = new Inflection($ruleset);
 
         $name = 'Афанасьевич';
 
-        $this->expectException(Petrovich\RuntimeException::class);
-        $this->expectExceptionMessage('Missing key "' . Petrovich\Ruleset::ROOT_KEY_MIDDLENAME . '" for inflection');
+        $this->expectException(inflection\RuntimeException::class);
+        $this->expectExceptionMessage('Missing key "' . inflection\Ruleset::ROOT_KEY_MIDDLENAME . '" for inflection');
 
-        $petrovich->inflectMiddleName($name, Petrovich\Ruleset::CASE_NOMENATIVE, Petrovich\Ruleset::GENDER_MALE);
+        $petrovich->inflectMiddleName($name, inflection\Ruleset::CASE_NOMENATIVE, inflection\Ruleset::GENDER_MALE);
     }
 
     public function testMale()
     {
-        $petrovich = new Petrovich(Petrovich\Loader::load(Petrovich\Loader::getVendorRulesFilePath()));
+        $petrovich = new Inflection(inflection\Loader::load(inflection\Loader::getVendorRulesFilePath()));
 
         $names = [
             'Алексеевич' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Алексеевич',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Алексеевича',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Алексеевичу',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Алексеевича',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Алексеевичем',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Алексеевиче',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Алексеевич',
+                inflection\Ruleset::CASE_GENITIVE      => 'Алексеевича',
+                inflection\Ruleset::CASE_DATIVE        => 'Алексеевичу',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Алексеевича',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Алексеевичем',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Алексеевиче',
             ],
 
         ];
 
         foreach ($names as $input => $name) {
-            foreach (Petrovich\Ruleset::getAvailableCases() as $case) {
+            foreach (inflection\Ruleset::getAvailableCases() as $case) {
                 static::assertSame(
                     $name[$case],
-                    $petrovich->inflectMiddleName($input, $case, Petrovich\Ruleset::GENDER_MALE),
+                    $petrovich->inflectMiddleName($input, $case, inflection\Ruleset::GENDER_MALE),
                     'Invalid casing of "' . $input . '" for "' . $case . '" case, expecting "' . $name[$case] . '"'
                 );
             }
@@ -56,24 +56,24 @@ class InflectMiddleNameTest extends TestCase
 
     public function testFemale()
     {
-        $petrovich = new Petrovich(Petrovich\Loader::load(Petrovich\Loader::getVendorRulesFilePath()));
+        $petrovich = new Inflection(inflection\Loader::load(inflection\Loader::getVendorRulesFilePath()));
 
         $names = [
             'Сергеевна' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Сергеевна',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Сергеевны',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Сергеевне',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Сергеевну',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Сергеевной',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Сергеевне',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Сергеевна',
+                inflection\Ruleset::CASE_GENITIVE      => 'Сергеевны',
+                inflection\Ruleset::CASE_DATIVE        => 'Сергеевне',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Сергеевну',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Сергеевной',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Сергеевне',
             ],
         ];
 
         foreach ($names as $input => $name) {
-            foreach (Petrovich\Ruleset::getAvailableCases() as $case) {
+            foreach (inflection\Ruleset::getAvailableCases() as $case) {
                 static::assertSame(
                     $name[$case],
-                    $petrovich->inflectMiddleName($input, $case, Petrovich\Ruleset::GENDER_FEMALE),
+                    $petrovich->inflectMiddleName($input, $case, inflection\Ruleset::GENDER_FEMALE),
                     'Invalid casing of "' . $input . '" for "' . $case . '" case, expecting "' . $name[$case] . '"'
                 );
             }
@@ -82,24 +82,24 @@ class InflectMiddleNameTest extends TestCase
 
     public function testAndrogynous()
     {
-        $petrovich = new Petrovich(Petrovich\Loader::load(Petrovich\Loader::getVendorRulesFilePath()));
+        $petrovich = new Inflection(inflection\Loader::load(inflection\Loader::getVendorRulesFilePath()));
 
         $names = [
             'Борух' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Борух',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Борух',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Борух',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Борух',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Борух',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Борух',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Борух',
+                inflection\Ruleset::CASE_GENITIVE      => 'Борух',
+                inflection\Ruleset::CASE_DATIVE        => 'Борух',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Борух',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Борух',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Борух',
             ],
         ];
 
         foreach ($names as $input => $name) {
-            foreach (Petrovich\Ruleset::getAvailableCases() as $case) {
+            foreach (inflection\Ruleset::getAvailableCases() as $case) {
                 static::assertSame(
                     $name[$case],
-                    $petrovich->inflectMiddleName($input, $case, Petrovich\Ruleset::GENDER_ANDROGYNOUS),
+                    $petrovich->inflectMiddleName($input, $case, inflection\Ruleset::GENDER_ANDROGYNOUS),
                     'Invalid casing of "' . $input . '" for "' . $case . '" case, expecting "' . $name[$case] . '"'
                 );
             }
@@ -108,32 +108,32 @@ class InflectMiddleNameTest extends TestCase
 
     public function testShouldCallDetectGenderOnlyIfNotProvided()
     {
-        $petrovich = new Petrovich(Petrovich\Loader::load(Petrovich\Loader::getVendorRulesFilePath()));
+        $petrovich = new Inflection(inflection\Loader::load(inflection\Loader::getVendorRulesFilePath()));
 
         $names = [
             'Сергеевич' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Сергеевич',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Сергеевич',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Сергеевич',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Сергеевич',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Сергеевич',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Сергеевич',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Сергеевич',
+                inflection\Ruleset::CASE_GENITIVE      => 'Сергеевич',
+                inflection\Ruleset::CASE_DATIVE        => 'Сергеевич',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Сергеевич',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Сергеевич',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Сергеевич',
             ],
             'Сергеевна' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Сергеевна',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Сергеевны',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Сергеевне',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Сергеевну',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Сергеевной',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Сергеевне',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Сергеевна',
+                inflection\Ruleset::CASE_GENITIVE      => 'Сергеевны',
+                inflection\Ruleset::CASE_DATIVE        => 'Сергеевне',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Сергеевну',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Сергеевной',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Сергеевне',
             ],
         ];
 
         foreach ($names as $input => $name) {
-            foreach (Petrovich\Ruleset::getAvailableCases() as $case) {
+            foreach (inflection\Ruleset::getAvailableCases() as $case) {
                 static::assertSame(
                     $name[$case],
-                    $petrovich->inflectMiddleName($input, $case, Petrovich\Ruleset::GENDER_FEMALE),
+                    $petrovich->inflectMiddleName($input, $case, inflection\Ruleset::GENDER_FEMALE),
                     'Invalid casing of "' . $input . '" for "' . $case . '" case, expecting "' . $name[$case] . '"'
                 );
             }

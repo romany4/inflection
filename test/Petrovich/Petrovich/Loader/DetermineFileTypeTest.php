@@ -1,9 +1,9 @@
 <?php
-namespace StaticallTest\Petrovich\Petrovich\Loader;
+namespace StaticallTest\inflection\inflection\Loader;
 
 use PHPUnit\Framework\TestCase;
 
-use Staticall\Petrovich\Petrovich\Loader;
+use romany4\inflection\inflection\Loader;
 
 class DetermineFileTypeTest extends TestCase
 {

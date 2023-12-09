@@ -1,27 +1,27 @@
 <?php
-namespace StaticallTest\Petrovich;
+namespace StaticallTest\inflection;
 
 use PHPUnit\Framework\TestCase;
 
-use Staticall\Petrovich\Petrovich;
+use romany4\inflection\Inflection;
 
 class RulesetAndConstructTest extends TestCase
 {
     public function testConstructShouldStoreRuleset()
     {
-        $ruleset = new Petrovich\Ruleset([], false);
+        $ruleset = new inflection\Ruleset([], false);
 
-        $petrovich = new Petrovich($ruleset);
+        $petrovich = new Inflection($ruleset);
 
         static::assertSame($ruleset, $petrovich->getRuleset());
     }
 
     public function testSetterShouldStoreRuleset()
     {
-        $rulesetConstruct = new Petrovich\Ruleset([], false);
-        $rulesetSetter    = new Petrovich\Ruleset([], false);
+        $rulesetConstruct = new inflection\Ruleset([], false);
+        $rulesetSetter    = new inflection\Ruleset([], false);
 
-        $petrovich = new Petrovich($rulesetConstruct);
+        $petrovich = new Inflection($rulesetConstruct);
 
         static::assertNotSame($rulesetSetter, $rulesetConstruct);
 

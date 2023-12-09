@@ -1,5 +1,5 @@
 <?php
-namespace Staticall\Petrovich;
+namespace romany4\inflection;
 
 class Exception extends \Exception
 {

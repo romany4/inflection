@@ -1,11 +1,11 @@
 <?php
-namespace StaticallTest\Petrovich\Petrovich\Loader;
+namespace StaticallTest\inflection\inflection\Loader;
 
 use PHPUnit\Framework\TestCase;
 
-use Staticall\Petrovich\Petrovich\Loader;
-use Staticall\Petrovich\Petrovich\IOException;
-use Staticall\Petrovich\Petrovich\RuntimeException;
+use romany4\inflection\inflection\Loader;
+use romany4\inflection\inflection\IOException;
+use romany4\inflection\inflection\RuntimeException;
 
 class LoadTest extends TestCase
 {

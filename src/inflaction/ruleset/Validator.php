@@ -1,7 +1,7 @@
 <?php
-namespace Staticall\Petrovich\Petrovich\Ruleset;
+namespace romany4\inflection\inflection\ruleset;
 
-use Staticall\Petrovich\Petrovich;
+use romany4\inflection\Inflection;
 
 class Validator
 {
@@ -49,7 +49,7 @@ class Validator
      */
     public function validateRootKeys(array $rules) : bool
     {
-        $availableKeys = Petrovich\Ruleset::getAvailableRootKeys();
+        $availableKeys = inflection\Ruleset::getAvailableRootKeys();
 
         $isFoundAnyAvailableKeys = false;
 
@@ -70,7 +70,7 @@ class Validator
 
     public function validateSecondKeys(array $rule) : bool
     {
-        $availableKeys = Petrovich\Ruleset::getAvailableSecondKeys();
+        $availableKeys = inflection\Ruleset::getAvailableSecondKeys();
 
         foreach (\array_keys($rule) as $ruleSecondKey) {
             if (\in_array($ruleSecondKey, $availableKeys, true) === false) {
@@ -83,7 +83,7 @@ class Validator
 
     public function validateValueKeys(array $rule) : bool
     {
-        $availableKeys = Petrovich\Ruleset::getAvailableValueKeys();
+        $availableKeys = inflection\Ruleset::getAvailableValueKeys();
 
         foreach (\array_keys($rule) as $ruleValueKey) {
             if (\in_array($ruleValueKey, $availableKeys, true) === false) {
@@ -104,11 +104,11 @@ class Validator
 
     public function validateValueKeyTest(array $rule) : bool
     {
-        if (\array_key_exists(Petrovich\Ruleset::VALUE_KEY_TEST, $rule) === false) {
+        if (\array_key_exists(inflection\Ruleset::VALUE_KEY_TEST, $rule) === false) {
             return true;
         }
 
-        if (\is_array($rule[Petrovich\Ruleset::VALUE_KEY_TEST]) === false) {
+        if (\is_array($rule[inflection\Ruleset::VALUE_KEY_TEST]) === false) {
             return false;
         }
 
@@ -117,11 +117,11 @@ class Validator
 
     public function validateValueKeyMods(array $rule) : bool
     {
-        if (\array_key_exists(Petrovich\Ruleset::VALUE_KEY_MODS, $rule) === false) {
+        if (\array_key_exists(inflection\Ruleset::VALUE_KEY_MODS, $rule) === false) {
             return true;
         }
 
-        if (\is_array($rule[Petrovich\Ruleset::VALUE_KEY_MODS]) === false) {
+        if (\is_array($rule[inflection\Ruleset::VALUE_KEY_MODS]) === false) {
             return false;
         }
 
@@ -130,11 +130,11 @@ class Validator
 
     public function validateValueKeyTags(array $rule) : bool
     {
-        if (\array_key_exists(Petrovich\Ruleset::VALUE_KEY_TAGS, $rule) === false) {
+        if (\array_key_exists(inflection\Ruleset::VALUE_KEY_TAGS, $rule) === false) {
             return true;
         }
 
-        if (\is_array($rule[Petrovich\Ruleset::VALUE_KEY_TAGS]) === false) {
+        if (\is_array($rule[inflection\Ruleset::VALUE_KEY_TAGS]) === false) {
             return false;
         }
 
@@ -143,17 +143,17 @@ class Validator
 
     public function validateValueKeyGender(array $rule) : bool
     {
-        $availableGenders = Petrovich\Ruleset::getAvailableGenders();
+        $availableGenders = inflection\Ruleset::getAvailableGenders();
 
-        if (\array_key_exists(Petrovich\Ruleset::VALUE_KEY_GENDER, $rule) === false) {
+        if (\array_key_exists(inflection\Ruleset::VALUE_KEY_GENDER, $rule) === false) {
             return true;
         }
 
-        if (\is_string($rule[Petrovich\Ruleset::VALUE_KEY_GENDER]) === false) {
+        if (\is_string($rule[inflection\Ruleset::VALUE_KEY_GENDER]) === false) {
             return false;
         }
 
-        if (\in_array($rule[Petrovich\Ruleset::VALUE_KEY_GENDER], $availableGenders) === false) {
+        if (\in_array($rule[inflection\Ruleset::VALUE_KEY_GENDER], $availableGenders) === false) {
             return false;
         }
 

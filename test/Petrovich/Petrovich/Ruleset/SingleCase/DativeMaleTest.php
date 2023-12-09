@@ -1,9 +1,9 @@
 <?php
-namespace StaticallTest\Petrovich\Petrovich\Ruleset\SingleCase;
+namespace StaticallTest\inflection\inflection\ruleset\SingleCase;
 
-use StaticallTest\Petrovich\Petrovich\Ruleset\SingleCaseHelper;
+use StaticallTest\inflection\inflection\ruleset\SingleCaseHelper;
 
-use Staticall\Petrovich\Petrovich\Ruleset;
+use romany4\inflection\inflection\Ruleset;
 
 class DativeMaleTest extends SingleCaseHelper
 {

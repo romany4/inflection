@@ -1,10 +1,10 @@
 <?php
-namespace StaticallTest\Petrovich\Petrovich;
+namespace StaticallTest\inflection\inflection;
 
 use PHPUnit\Framework\TestCase;
 
-use Staticall\Petrovich\Petrovich;
-use Staticall\Petrovich\Exception;
+use romany4\inflection\Inflection;
+use romany4\inflection\Exception;
 
 class DetectGenderTest extends TestCase
 {
@@ -13,7 +13,7 @@ class DetectGenderTest extends TestCase
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('Middle name cannot be empty');
 
-        Petrovich::detectGender('');
+        Inflection::detectGender('');
     }
 
     public function testGenderless()
@@ -24,7 +24,7 @@ class DetectGenderTest extends TestCase
         ];
 
         foreach ($middleNames as $middleName) {
-            static::assertSame(Petrovich\Ruleset::GENDER_ANDROGYNOUS, Petrovich::detectGender($middleName));
+            static::assertSame(inflection\Ruleset::GENDER_ANDROGYNOUS, Inflection::detectGender($middleName));
         }
     }
 
@@ -149,7 +149,7 @@ class DetectGenderTest extends TestCase
         ];
 
         foreach ($middleNames as $middleName) {
-            static::assertSame(Petrovich\Ruleset::GENDER_FEMALE, Petrovich::detectGender($middleName));
+            static::assertSame(inflection\Ruleset::GENDER_FEMALE, Inflection::detectGender($middleName));
         }
     }
 
@@ -232,7 +232,7 @@ class DetectGenderTest extends TestCase
         ];
 
         foreach ($middleNames as $middleName) {
-            static::assertSame(Petrovich\Ruleset::GENDER_MALE, Petrovich::detectGender($middleName));
+            static::assertSame(inflection\Ruleset::GENDER_MALE, Inflection::detectGender($middleName));
         }
     }
 
@@ -247,7 +247,7 @@ class DetectGenderTest extends TestCase
         ];
 
         foreach ($middleNames as $middleName) {
-            static::assertSame(Petrovich\Ruleset::GENDER_MALE, Petrovich::detectGender($middleName . ' оглы'));
+            static::assertSame(inflection\Ruleset::GENDER_MALE, Inflection::detectGender($middleName . ' оглы'));
         }
     }
 
@@ -262,7 +262,7 @@ class DetectGenderTest extends TestCase
         ];
 
         foreach ($middleNames as $middleName) {
-            static::assertSame(Petrovich\Ruleset::GENDER_FEMALE, Petrovich::detectGender($middleName . ' кызы'));
+            static::assertSame(inflection\Ruleset::GENDER_FEMALE, Inflection::detectGender($middleName . ' кызы'));
         }
     }
 }

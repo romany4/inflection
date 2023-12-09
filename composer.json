@@ -1,6 +1,6 @@
 {
-    "name":        "staticall/petrovich-php",
-    "description": "Fork of original petrovich/petrovich-php repository, with testing, PHP7 support and minor improvements",
+    "name":        "romany4/inflection",
+    "description": "Fork of original petrovich/petrovich-php repository, with testing, PHP8 support and minor improvements",
     "license":     "MIT",
 
     "keywords": [
@@ -11,31 +11,26 @@
     ],
 
     "support": {
-        "issues": "https://github.com/staticall/petrovich-php/issues",
-        "source": "https://github.com/staticall/petrovich-php"
+        "issues": "https://github.com/romany4/inflection/issues",
+        "source": "https://github.com/romany4/inflection"
     },
 
     "require": {
-        "php": "^7.2.9",
-
+        "php": "~8",
         "ext-json":     "*",
         "ext-mbstring": "*",
-
         "symfony/yaml": "~5.0",
-
         "cloudloyalty/petrovich-rules": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "~8.5.3",
-
         "infection/infection": "~0.15.3",
-
         "squizlabs/php_codesniffer": "~3.5.4"
     },
 
     "autoload": {
         "psr-4": {
-            "Staticall\\Petrovich\\": "src/"
+            "romany4\\inflection\\": "src/"
         }
     },
     "autoload-dev": {
@@ -50,12 +45,9 @@
             "@test",
             "@mutation"
         ],
-
         "cs-check": "phpcs",
-
         "test":          "phpunit --colors=always",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
-
         "mutation": "infection"
     },
     "scripts-descriptions": {

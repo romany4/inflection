@@ -1,5 +1,5 @@
 <?php
-namespace Staticall\Petrovich\Petrovich;
+namespace romany4\inflection\inflection;
 
 use Symfony\Component\Yaml\Yaml;
 

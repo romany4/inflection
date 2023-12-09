@@ -1,215 +1,215 @@
 <?php
-namespace StaticallTest\Petrovich\Petrovich;
+namespace StaticallTest\inflection\inflection;
 
 use PHPUnit\Framework\TestCase;
 
-use Staticall\Petrovich\Petrovich;
+use romany4\inflection\Inflection;
 
 class InflectFirstNameTest extends TestCase
 {
     public function testWithoutFirstNameRules()
     {
-        $ruleset = Petrovich\Loader::load(Petrovich\Loader::getVendorRulesFilePath());
+        $ruleset = inflection\Loader::load(inflection\Loader::getVendorRulesFilePath());
 
         $rules = $ruleset->getRules();
 
-        unset($rules[Petrovich\Ruleset::ROOT_KEY_FIRSTNAME]);
+        unset($rules[inflection\Ruleset::ROOT_KEY_FIRSTNAME]);
 
         $ruleset->setRules($rules, false);
 
-        $petrovich = new Petrovich($ruleset);
+        $petrovich = new Inflection($ruleset);
 
         $name = 'Павел';
 
-        $this->expectException(Petrovich\RuntimeException::class);
-        $this->expectExceptionMessage('Missing key "' . Petrovich\Ruleset::ROOT_KEY_FIRSTNAME . '" for inflection');
+        $this->expectException(inflection\RuntimeException::class);
+        $this->expectExceptionMessage('Missing key "' . inflection\Ruleset::ROOT_KEY_FIRSTNAME . '" for inflection');
 
-        $petrovich->inflectFirstName($name, Petrovich\Ruleset::CASE_NOMENATIVE, Petrovich\Ruleset::GENDER_MALE);
+        $petrovich->inflectFirstName($name, inflection\Ruleset::CASE_NOMENATIVE, inflection\Ruleset::GENDER_MALE);
     }
 
     public function testMale()
     {
-        $petrovich = new Petrovich(Petrovich\Loader::load(Petrovich\Loader::getVendorRulesFilePath()));
+        $petrovich = new Inflection(inflection\Loader::load(inflection\Loader::getVendorRulesFilePath()));
 
         $names = [
             'Алексей' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Алексей',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Алексея',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Алексею',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Алексея',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Алексеем',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Алексее',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Алексей',
+                inflection\Ruleset::CASE_GENITIVE      => 'Алексея',
+                inflection\Ruleset::CASE_DATIVE        => 'Алексею',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Алексея',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Алексеем',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Алексее',
             ],
 
             'Михаил' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Михаил',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Михаила',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Михаилу',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Михаила',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Михаилом',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Михаиле',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Михаил',
+                inflection\Ruleset::CASE_GENITIVE      => 'Михаила',
+                inflection\Ruleset::CASE_DATIVE        => 'Михаилу',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Михаила',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Михаилом',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Михаиле',
             ],
 
             'Александр' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Александр',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Александра',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Александру',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Александра',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Александром',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Александре',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Александр',
+                inflection\Ruleset::CASE_GENITIVE      => 'Александра',
+                inflection\Ruleset::CASE_DATIVE        => 'Александру',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Александра',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Александром',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Александре',
             ],
 
             'Валентин' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Валентин',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Валентина',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Валентину',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Валентина',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Валентином',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Валентине',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Валентин',
+                inflection\Ruleset::CASE_GENITIVE      => 'Валентина',
+                inflection\Ruleset::CASE_DATIVE        => 'Валентину',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Валентина',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Валентином',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Валентине',
             ],
 
             'Олесь' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Олесь',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Олеся',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Олесю',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Олеся',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Олесем',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Олесе',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Олесь',
+                inflection\Ruleset::CASE_GENITIVE      => 'Олеся',
+                inflection\Ruleset::CASE_DATIVE        => 'Олесю',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Олеся',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Олесем',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Олесе',
             ],
 
             // Weird, "Никита" have issues
             /*'Никита' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Никита',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Никиты',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Никите',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Никиту',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Никитой',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Никите',
+                inflection\ruleset::CASE_NOMENATIVE    => 'Никита',
+                inflection\ruleset::CASE_GENITIVE      => 'Никиты',
+                inflection\ruleset::CASE_DATIVE        => 'Никите',
+                inflection\ruleset::CASE_ACCUSATIVE    => 'Никиту',
+                inflection\ruleset::CASE_INSTRUMENTAL  => 'Никитой',
+                inflection\ruleset::CASE_PREPOSITIONAL => 'Никите',
             ],*/
 
             'Илья' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Илья',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Ильи',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Илье',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Илью',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Ильёй',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Илье',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Илья',
+                inflection\Ruleset::CASE_GENITIVE      => 'Ильи',
+                inflection\Ruleset::CASE_DATIVE        => 'Илье',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Илью',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Ильёй',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Илье',
             ],
 
             'Ромео' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Ромео',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Ромео',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Ромео',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Ромео',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Ромео',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Ромео',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Ромео',
+                inflection\Ruleset::CASE_GENITIVE      => 'Ромео',
+                inflection\Ruleset::CASE_DATIVE        => 'Ромео',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Ромео',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Ромео',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Ромео',
             ],
 
             'Алим-Паша' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Алим-Паша',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Алима-Паши',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Алиму-Паше',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Алима-Пашу',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Алимом-Пашей',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Алиме-Паше',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Алим-Паша',
+                inflection\Ruleset::CASE_GENITIVE      => 'Алима-Паши',
+                inflection\Ruleset::CASE_DATIVE        => 'Алиму-Паше',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Алима-Пашу',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Алимом-Пашей',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Алиме-Паше',
             ],
 
             'Даша' => [ // Yes, some people are weird
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Даша',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Даши',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Даше',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Дашу',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Дашей',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Даше',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Даша',
+                inflection\Ruleset::CASE_GENITIVE      => 'Даши',
+                inflection\Ruleset::CASE_DATIVE        => 'Даше',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Дашу',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Дашей',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Даше',
             ],
 
             'Феликс' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Феликс',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Феликса',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Феликсу',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Феликса',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Феликсом',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Феликсе',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Феликс',
+                inflection\Ruleset::CASE_GENITIVE      => 'Феликса',
+                inflection\Ruleset::CASE_DATIVE        => 'Феликсу',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Феликса',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Феликсом',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Феликсе',
             ],
 
             'Гюнтер' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Гюнтер',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Гюнтера',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Гюнтеру',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Гюнтера',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Гюнтером',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Гюнтере',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Гюнтер',
+                inflection\Ruleset::CASE_GENITIVE      => 'Гюнтера',
+                inflection\Ruleset::CASE_DATIVE        => 'Гюнтеру',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Гюнтера',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Гюнтером',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Гюнтере',
             ],
 
             'Уве' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Уве',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Уве',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Уве',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Уве',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Уве',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Уве',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Уве',
+                inflection\Ruleset::CASE_GENITIVE      => 'Уве',
+                inflection\Ruleset::CASE_DATIVE        => 'Уве',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Уве',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Уве',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Уве',
             ],
 
             'Лоренц' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Лоренц',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Лоренца',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Лоренцу',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Лоренца',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Лоренцом',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Лоренце',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Лоренц',
+                inflection\Ruleset::CASE_GENITIVE      => 'Лоренца',
+                inflection\Ruleset::CASE_DATIVE        => 'Лоренцу',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Лоренца',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Лоренцом',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Лоренце',
             ],
 
             'Лев' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Лев',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Льва',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Льву',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Льва',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Львом',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Льве',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Лев',
+                inflection\Ruleset::CASE_GENITIVE      => 'Льва',
+                inflection\Ruleset::CASE_DATIVE        => 'Льву',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Льва',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Львом',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Льве',
             ],
 
             'Пётр' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Пётр',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Петра',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Петру',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Петра',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Петром',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Петре',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Пётр',
+                inflection\Ruleset::CASE_GENITIVE      => 'Петра',
+                inflection\Ruleset::CASE_DATIVE        => 'Петру',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Петра',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Петром',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Петре',
             ],
 
             'Павел' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Павел',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Павла',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Павлу',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Павла',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Павлом',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Павле',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Павел',
+                inflection\Ruleset::CASE_GENITIVE      => 'Павла',
+                inflection\Ruleset::CASE_DATIVE        => 'Павлу',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Павла',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Павлом',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Павле',
             ],
 
             'Яша' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Яша',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Яши',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Яше',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Яшу',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Яшей',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Яше',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Яша',
+                inflection\Ruleset::CASE_GENITIVE      => 'Яши',
+                inflection\Ruleset::CASE_DATIVE        => 'Яше',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Яшу',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Яшей',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Яше',
             ],
 
             'Шота' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Шота',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Шота',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Шота',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Шота',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Шота',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Шота',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Шота',
+                inflection\Ruleset::CASE_GENITIVE      => 'Шота',
+                inflection\Ruleset::CASE_DATIVE        => 'Шота',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Шота',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Шота',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Шота',
             ],
         ];
 
         foreach ($names as $input => $name) {
-            foreach (Petrovich\Ruleset::getAvailableCases() as $case) {
+            foreach (inflection\Ruleset::getAvailableCases() as $case) {
                 static::assertSame(
                     $name[$case],
-                    $petrovich->inflectFirstName($input, $case, Petrovich\Ruleset::GENDER_MALE),
+                    $petrovich->inflectFirstName($input, $case, inflection\Ruleset::GENDER_MALE),
                     'Invalid casing of "' . $input . '" for "' . $case . '" case, expecting "' . $name[$case] . '"'
                 );
             }
@@ -218,105 +218,105 @@ class InflectFirstNameTest extends TestCase
 
     public function testFemale()
     {
-        $petrovich = new Petrovich(Petrovich\Loader::load(Petrovich\Loader::getVendorRulesFilePath()));
+        $petrovich = new Inflection(inflection\Loader::load(inflection\Loader::getVendorRulesFilePath()));
 
         $names = [
             'Марина' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Марина',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Марины',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Марине',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Марину',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Мариной',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Марине',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Марина',
+                inflection\Ruleset::CASE_GENITIVE      => 'Марины',
+                inflection\Ruleset::CASE_DATIVE        => 'Марине',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Марину',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Мариной',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Марине',
             ],
 
             'Ирен' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Ирен',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Ирен',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Ирен',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Ирен',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Ирен',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Ирен',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Ирен',
+                inflection\Ruleset::CASE_GENITIVE      => 'Ирен',
+                inflection\Ruleset::CASE_DATIVE        => 'Ирен',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Ирен',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Ирен',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Ирен',
             ],
 
             'Катрин' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Катрин',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Катрин',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Катрин',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Катрин',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Катрин',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Катрин',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Катрин',
+                inflection\Ruleset::CASE_GENITIVE      => 'Катрин',
+                inflection\Ruleset::CASE_DATIVE        => 'Катрин',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Катрин',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Катрин',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Катрин',
             ],
 
             'Зульфия' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Зульфия',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Зульфии',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Зульфии',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Зульфию',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Зульфией',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Зульфии',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Зульфия',
+                inflection\Ruleset::CASE_GENITIVE      => 'Зульфии',
+                inflection\Ruleset::CASE_DATIVE        => 'Зульфии',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Зульфию',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Зульфией',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Зульфии',
             ],
 
             'Мария' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Мария',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Марии',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Марии',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Марию',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Марией',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Марии',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Мария',
+                inflection\Ruleset::CASE_GENITIVE      => 'Марии',
+                inflection\Ruleset::CASE_DATIVE        => 'Марии',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Марию',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Марией',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Марии',
             ],
 
             'Марьям' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Марьям',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Марьям',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Марьям',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Марьям',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Марьям',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Марьям',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Марьям',
+                inflection\Ruleset::CASE_GENITIVE      => 'Марьям',
+                inflection\Ruleset::CASE_DATIVE        => 'Марьям',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Марьям',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Марьям',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Марьям',
             ],
 
             'Элизабет' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Элизабет',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Элизабет',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Элизабет',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Элизабет',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Элизабет',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Элизабет',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Элизабет',
+                inflection\Ruleset::CASE_GENITIVE      => 'Элизабет',
+                inflection\Ruleset::CASE_DATIVE        => 'Элизабет',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Элизабет',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Элизабет',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Элизабет',
             ],
 
             'Даша' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Даша',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Даши',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Даше',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Дашу',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Дашей',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Даше',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Даша',
+                inflection\Ruleset::CASE_GENITIVE      => 'Даши',
+                inflection\Ruleset::CASE_DATIVE        => 'Даше',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Дашу',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Дашей',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Даше',
             ],
 
             'Стефани' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Стефани',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Стефани',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Стефани',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Стефани',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Стефани',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Стефани',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Стефани',
+                inflection\Ruleset::CASE_GENITIVE      => 'Стефани',
+                inflection\Ruleset::CASE_DATIVE        => 'Стефани',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Стефани',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Стефани',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Стефани',
             ],
 
             'Любовь' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Любовь',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Любови',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Любови',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Любовь',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Любовью',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Любови',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Любовь',
+                inflection\Ruleset::CASE_GENITIVE      => 'Любови',
+                inflection\Ruleset::CASE_DATIVE        => 'Любови',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Любовь',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Любовью',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Любови',
             ],
         ];
 
         foreach ($names as $input => $name) {
-            foreach (Petrovich\Ruleset::getAvailableCases() as $case) {
+            foreach (inflection\Ruleset::getAvailableCases() as $case) {
                 static::assertSame(
                     $name[$case],
-                    $petrovich->inflectFirstName($input, $case, Petrovich\Ruleset::GENDER_FEMALE),
+                    $petrovich->inflectFirstName($input, $case, inflection\Ruleset::GENDER_FEMALE),
                     'Invalid casing of "' . $input . '" for "' . $case . '" case, expecting "' . $name[$case] . '"'
                 );
             }
@@ -325,24 +325,24 @@ class InflectFirstNameTest extends TestCase
 
     public function testAndrogynous()
     {
-        $petrovich = new Petrovich(Petrovich\Loader::load(Petrovich\Loader::getVendorRulesFilePath()));
+        $petrovich = new Inflection(inflection\Loader::load(inflection\Loader::getVendorRulesFilePath()));
 
         $names = [
             'Луи' => [
-                Petrovich\Ruleset::CASE_NOMENATIVE    => 'Луи',
-                Petrovich\Ruleset::CASE_GENITIVE      => 'Луи',
-                Petrovich\Ruleset::CASE_DATIVE        => 'Луи',
-                Petrovich\Ruleset::CASE_ACCUSATIVE    => 'Луи',
-                Petrovich\Ruleset::CASE_INSTRUMENTAL  => 'Луи',
-                Petrovich\Ruleset::CASE_PREPOSITIONAL => 'Луи',
+                inflection\Ruleset::CASE_NOMENATIVE    => 'Луи',
+                inflection\Ruleset::CASE_GENITIVE      => 'Луи',
+                inflection\Ruleset::CASE_DATIVE        => 'Луи',
+                inflection\Ruleset::CASE_ACCUSATIVE    => 'Луи',
+                inflection\Ruleset::CASE_INSTRUMENTAL  => 'Луи',
+                inflection\Ruleset::CASE_PREPOSITIONAL => 'Луи',
             ],
         ];
 
         foreach ($names as $input => $name) {
-            foreach (Petrovich\Ruleset::getAvailableCases() as $case) {
+            foreach (inflection\Ruleset::getAvailableCases() as $case) {
                 static::assertSame(
                     $name[$case],
-                    $petrovich->inflectFirstName($input, $case, Petrovich\Ruleset::GENDER_ANDROGYNOUS),
+                    $petrovich->inflectFirstName($input, $case, inflection\Ruleset::GENDER_ANDROGYNOUS),
                     'Invalid casing of "' . $input . '" for "' . $case . '" case, expecting "' . $name[$case] . '"'
                 );
             }

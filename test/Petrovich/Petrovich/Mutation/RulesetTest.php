@@ -1,9 +1,9 @@
 <?php
-namespace StaticallTest\Petrovich\Petrovich\Mutation;
+namespace StaticallTest\inflection\inflection\Mutation;
 
 use PHPUnit\Framework\TestCase;
 
-use Staticall\Petrovich\Petrovich\Ruleset;
+use romany4\inflection\inflection\Ruleset;
 
 class RulesetTest extends TestCase
 {

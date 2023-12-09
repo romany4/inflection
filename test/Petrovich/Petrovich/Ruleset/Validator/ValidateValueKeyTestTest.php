@@ -1,22 +1,22 @@
 <?php
-namespace StaticallTest\Petrovich\Petrovich\Ruleset;
+namespace StaticallTest\inflection\inflection\ruleset;
 
 use PHPUnit\Framework\TestCase;
 
-use Staticall\Petrovich\Petrovich\Ruleset;
+use romany4\inflection\inflection\Ruleset;
 
 class ValidateValueKeyTestTest extends TestCase
 {
     public function testNoSuchKey()
     {
-        $validator = new Ruleset\Validator;
+        $validator = new ruleset\Validator;
 
         static::assertTrue($validator->validateValueKeyTest([]));
     }
 
     public function testRuleIsInvalidType()
     {
-        $validator = new Ruleset\Validator;
+        $validator = new ruleset\Validator;
 
         static::assertFalse(
             $validator->validateValueKeyTest(
@@ -29,7 +29,7 @@ class ValidateValueKeyTestTest extends TestCase
 
     public function testRuleIsValidType()
     {
-        $validator = new Ruleset\Validator;
+        $validator = new ruleset\Validator;
 
         static::assertTrue(
             $validator->validateValueKeyTest(

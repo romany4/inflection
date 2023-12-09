@@ -1,9 +1,9 @@
 <?php
-namespace StaticallTest\Petrovich\Petrovich\Ruleset;
+namespace StaticallTest\inflection\inflection\ruleset;
 
 use PHPUnit\Framework\TestCase;
 
-use Staticall\Petrovich\Petrovich\Ruleset;
+use romany4\inflection\inflection\Ruleset;
 
 class OnlyExceptionsTest extends TestCase
 {

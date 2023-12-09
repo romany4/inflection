@@ -1,46 +1,47 @@
 <?php
-namespace Staticall\Petrovich\Petrovich;
 
-use Staticall\Petrovich\Petrovich\Ruleset\Validator;
+namespace romany4\inflection\inflection;
+
+use romany4\inflection\inflection\ruleset\Validator;
 
 class Ruleset
 {
-    const ROOT_KEY_FIRSTNAME  = 'firstname';
-    const ROOT_KEY_LASTNAME   = 'lastname';
-    const ROOT_KEY_MIDDLENAME = 'middlename';
+    public const ROOT_KEY_FIRSTNAME = 'firstname';
+    public const ROOT_KEY_LASTNAME = 'lastname';
+    public const ROOT_KEY_MIDDLENAME = 'middlename';
 
-    const SECOND_KEY_EXCEPTIONS = 'exceptions';
-    const SECOND_KEY_SUFFIXES   = 'suffixes';
+    public const SECOND_KEY_EXCEPTIONS = 'exceptions';
+    public const SECOND_KEY_SUFFIXES = 'suffixes';
 
-    const VALUE_KEY_GENDER = 'gender';
-    const VALUE_KEY_MODS   = 'mods';
-    const VALUE_KEY_TEST   = 'test';
-    const VALUE_KEY_TAGS   = 'tags';
+    public const VALUE_KEY_GENDER = 'gender';
+    public const VALUE_KEY_MODS = 'mods';
+    public const VALUE_KEY_TEST = 'test';
+    public const VALUE_KEY_TAGS = 'tags';
 
-    const GENDER_ANDROGYNOUS = 'androgynous';
-    const GENDER_MALE        = 'male';
-    const GENDER_FEMALE      = 'female';
+    public const GENDER_ANDROGYNOUS = 'androgynous';
+    public const GENDER_MALE = 'male';
+    public const GENDER_FEMALE = 'female';
 
-    const MOD_INITIAL = '.';
+    public const MOD_INITIAL = '.';
 
-    const CASE_NOMENATIVE    = -1; //именительный
-    const CASE_GENITIVE      = 0; //родительный
-    const CASE_DATIVE        = 1; //дательный
-    const CASE_ACCUSATIVE    = 2; //винительный
-    const CASE_INSTRUMENTAL  = 3; //творительный
-    const CASE_PREPOSITIONAL = 4; //предложный
-    const DEFAULT_CASE       = self::CASE_NOMENATIVE;
+    public const CASE_NOMENATIVE = -1; //именительный
+    public const CASE_GENITIVE = 0; //родительный
+    public const CASE_DATIVE = 1; //дательный
+    public const CASE_ACCUSATIVE = 2; //винительный
+    public const CASE_INSTRUMENTAL = 3; //творительный
+    public const CASE_PREPOSITIONAL = 4; //предложный
+    public const DEFAULT_CASE = self::CASE_NOMENATIVE;
 
     const DEFAULT_DELIMITER = '-';
 
     /**
-     * @var array List of parsed Petrovich rules
+     * @var array List of parsed inflection rules
      */
     private $rules = [];
 
     /**
      * @param array $rules
-     * @param bool  $shouldValidate
+     * @param bool $shouldValidate
      *
      * @throws ValidationException
      */
@@ -53,13 +54,13 @@ class Ruleset
 
     /**
      * @param array $rules
-     * @param bool  $shouldValidate
+     * @param bool $shouldValidate
      *
      * @return Ruleset
      *
      * @throws ValidationException
      */
-    public function setRules(array $rules, bool $shouldValidate = false) : Ruleset
+    public function setRules(array $rules, bool $shouldValidate = false): Ruleset
     {
         if ($shouldValidate && $this->validate($rules) === false) {
             throw new ValidationException('Input didn\'t pass validation');
@@ -73,7 +74,7 @@ class Ruleset
     /**
      * @return array
      */
-    public function getRules() : array
+    public function getRules(): array
     {
         return $this->rules;
     }
@@ -86,11 +87,9 @@ class Ruleset
      *
      * @return bool
      */
-    public function validate(array $rules) : bool
+    public function validate(array $rules): bool
     {
-        $validator = new Validator();
-
-        return $validator->validate($rules);
+        return (new Validator())->validate($rules);
     }
 
     /**
@@ -98,7 +97,7 @@ class Ruleset
      *
      * @return array
      */
-    public static function getAvailableRootKeys() : array
+    public static function getAvailableRootKeys(): array
     {
         return [
             static::ROOT_KEY_FIRSTNAME,
@@ -112,7 +111,7 @@ class Ruleset
      *
      * @return array
      */
-    public static function getAvailableSecondKeys() : array
+    public static function getAvailableSecondKeys(): array
     {
         return [
             static::SECOND_KEY_EXCEPTIONS,
@@ -125,7 +124,7 @@ class Ruleset
      *
      * @return array
      */
-    public static function getAvailableValueKeys() : array
+    public static function getAvailableValueKeys(): array
     {
         return [
             static::VALUE_KEY_GENDER,
@@ -140,7 +139,7 @@ class Ruleset
      *
      * @return array
      */
-    public static function getAvailableGenders() : array
+    public static function getAvailableGenders(): array
     {
         return [
             static::GENDER_ANDROGYNOUS,
@@ -154,7 +153,7 @@ class Ruleset
      *
      * @return array
      */
-    public static function getAvailableCases() : array
+    public static function getAvailableCases(): array
     {
         return [
             static::CASE_NOMENATIVE,
@@ -168,7 +167,7 @@ class Ruleset
 
     /**
      * @param string $lastName
-     * @param int    $case
+     * @param int $case
      * @param string $gender
      * @param string $delimiter
      *
@@ -178,10 +177,10 @@ class Ruleset
      */
     public function inflectLastName(
         string $lastName,
-        int $case,
+        int    $case,
         string $gender,
         string $delimiter = self::DEFAULT_DELIMITER
-    ) : string
+    ): string
     {
         $rules = $this->getRules();
 
@@ -194,7 +193,7 @@ class Ruleset
 
     /**
      * @param string $firstName
-     * @param int    $case
+     * @param int $case
      * @param string $gender
      * @param string $delimiter
      *
@@ -204,10 +203,10 @@ class Ruleset
      */
     public function inflectFirstName(
         string $firstName,
-        int $case,
+        int    $case,
         string $gender,
         string $delimiter = self::DEFAULT_DELIMITER
-    ) : string
+    ): string
     {
         $rules = $this->getRules();
 
@@ -220,7 +219,7 @@ class Ruleset
 
     /**
      * @param string $middleName
-     * @param int    $case
+     * @param int $case
      * @param string $gender
      * @param string $delimiter
      *
@@ -230,10 +229,10 @@ class Ruleset
      */
     public function inflectMiddleName(
         string $middleName,
-        int $case,
+        int    $case,
         string $gender,
         string $delimiter = self::DEFAULT_DELIMITER
-    ) : string
+    ): string
     {
         $rules = $this->getRules();
 
@@ -246,28 +245,28 @@ class Ruleset
 
     /**
      * @param string $input
-     * @param int    $case
+     * @param int $case
      * @param string $gender
-     * @param array  $rule
+     * @param array $rule
      * @param string $delimiter
      *
      * @return string
      */
     public function inflect(
         string $input,
-        int $case,
+        int    $case,
         string $gender,
-        array $rule,
+        array  $rule,
         string $delimiter = self::DEFAULT_DELIMITER
-    ) : string
+    ): string
     {
         if ($case === static::CASE_NOMENATIVE) {
-            // Because Petrovich does not provide a case for nomenative case, because it's useless
+            // Because inflection does not provide a case for nomenative case, because it's useless
             return $input;
         }
 
         $inputParts = \explode($delimiter, $input);
-        $result     = [];
+        $result = [];
 
         foreach ($inputParts as $inputPart) {
             if ($this->isInExceptions($inputPart, $case, $gender, $rule) === true) {
@@ -284,18 +283,18 @@ class Ruleset
 
     /**
      * @param string $input
-     * @param int    $case
+     * @param int $case
      * @param string $gender
-     * @param array  $rule
+     * @param array $rule
      *
      * @return string
      */
     protected function findMatchingRule(
         string $input,
-        int $case,
+        int    $case,
         string $gender,
-        array $rule
-    ) : string
+        array  $rule
+    ): string
     {
         if (empty($rule[static::SECOND_KEY_SUFFIXES])) {
             return $input;
@@ -332,26 +331,26 @@ class Ruleset
      * Checks if current rule is in exceptions
      *
      * @param string $input
-     * @param int    $case
+     * @param int $case
      * @param string $gender
-     * @param array  $rule
+     * @param array $rule
      *
      * @return bool
      */
-    protected function isInExceptions(string $input, int $case, string $gender, array $rule) : bool
+    protected function isInExceptions(string $input, int $case, string $gender, array $rule): bool
     {
         return $this->getException($input, $case, $gender, $rule) !== null;
     }
 
     /**
      * @param string $input
-     * @param int    $case
+     * @param int $case
      * @param string $gender
-     * @param array  $rule
+     * @param array $rule
      *
      * @return string|null
      */
-    protected function getException(string $input, int $case, string $gender, array $rule) : ?string
+    protected function getException(string $input, int $case, string $gender, array $rule): ?string
     {
         if (empty($rule[static::SECOND_KEY_EXCEPTIONS])) {
             return null;
@@ -384,9 +383,9 @@ class Ruleset
      *
      * @return string
      */
-    protected function applyRule(string $mod, string $input) : string
+    protected function applyRule(string $mod, string $input): string
     {
-        $result  = \mb_substr($input, 0, \mb_strlen($input) - \mb_substr_count($mod, '-'));
+        $result = \mb_substr($input, 0, \mb_strlen($input) - \mb_substr_count($mod, '-'));
         $result .= \str_replace('-', '', $mod);
 
         return $result;

@@ -1,10 +1,10 @@
 <?php
 
-namespace StaticallTest\Petrovich\Petrovich;
+namespace StaticallTest\inflection\inflection;
 
 use PHPUnit\Framework\TestCase;
 
-use Staticall\Petrovich\Petrovich;
+use romany4\inflection\Inflection;
 
 class ParseFullNameTest extends TestCase
 {
@@ -31,7 +31,7 @@ class ParseFullNameTest extends TestCase
         ];
 
         foreach ($dataset as $input => $expected) {
-            static::assertSame($expected, Petrovich::parseFullName($input));
+            static::assertSame($expected, Inflection::parseFullName($input));
         }
     }
 
@@ -82,7 +82,7 @@ class ParseFullNameTest extends TestCase
         ];
 
         foreach ($dataset as $input => $expected) {
-            static::assertSame($expected, Petrovich::parseFullName($input));
+            static::assertSame($expected, Inflection::parseFullName($input));
         }
     }
 
@@ -133,7 +133,7 @@ class ParseFullNameTest extends TestCase
         ];
 
         foreach ($dataset as $input => $expected) {
-            static::assertSame($expected, Petrovich::parseFullName($input));
+            static::assertSame($expected, Inflection::parseFullName($input));
         }
     }
 
@@ -154,7 +154,7 @@ class ParseFullNameTest extends TestCase
         ];
 
         foreach ($dataset as $input => $expected) {
-            static::assertSame($expected, Petrovich::parseFullName($input));
+            static::assertSame($expected, Inflection::parseFullName($input));
         }
     }
 }

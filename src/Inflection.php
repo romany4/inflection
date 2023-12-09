@@ -1,9 +1,10 @@
 <?php
-namespace Staticall\Petrovich;
 
-use Staticall\Petrovich\Petrovich\Ruleset;
+namespace romany4\inflection;
 
-class Petrovich
+use romany4\inflection\inflection\Ruleset;
+
+class Inflection
 {
     /**
      * @var Ruleset
@@ -21,9 +22,9 @@ class Petrovich
     /**
      * @param Ruleset $ruleset
      *
-     * @return Petrovich
+     * @return Inflection
      */
-    public function setRuleset(Ruleset $ruleset) : Petrovich
+    public function setRuleset(Ruleset $ruleset): Inflection
     {
         $this->ruleset = $ruleset;
 
@@ -33,7 +34,7 @@ class Petrovich
     /**
      * @return Ruleset
      */
-    public function getRuleset() : Ruleset
+    public function getRuleset(): Ruleset
     {
         return $this->ruleset;
     }
@@ -42,15 +43,15 @@ class Petrovich
      * Inflects full name, format must be:
      * LastName FirstName MiddleName
      *
-     * @param string      $fullName Full name, separated by a single space, format: LastName FirstName MiddleName
-     * @param int         $case     Case constant
-     * @param string|null $gender   Gender constant
+     * @param string $fullName Full name, separated by a single space, format: LastName FirstName MiddleName
+     * @param int $case Case constant
+     * @param string|null $gender Gender constant
      *
      * @return string
      *
      * @throws Exception
      */
-    public function inflectFullName(string $fullName, int $case, string $gender = null) : string
+    public function inflectFullName(string $fullName, int $case, string $gender = null): string
     {
         $parsed = static::parseFullName($fullName);
 
@@ -88,14 +89,14 @@ class Petrovich
      * Inflects first name only
      *
      * @param string $firstName
-     * @param int    $case
+     * @param int $case
      * @param string $gender
      *
      * @return string
      *
-     * @throws Petrovich\RuntimeException
+     * @throws inflection\RuntimeException
      */
-    public function inflectFirstName(string $firstName, int $case, string $gender) : string
+    public function inflectFirstName(string $firstName, int $case, string $gender): string
     {
         return $this->ruleset->inflectFirstName($firstName, $case, $gender);
     }
@@ -103,15 +104,15 @@ class Petrovich
     /**
      * Inflects middle name only
      *
-     * @param string      $middleName
-     * @param int         $case
+     * @param string $middleName
+     * @param int $case
      * @param string|null $gender
      *
      * @return string
      *
      * @throws Exception
      */
-    public function inflectMiddleName(string $middleName, int $case, string $gender = null) : string
+    public function inflectMiddleName(string $middleName, int $case, string $gender = null): string
     {
         return $this->ruleset->inflectMiddleName($middleName, $case, $gender ?? static::detectGender($middleName));
     }
@@ -120,25 +121,25 @@ class Petrovich
      * Inflects last name only
      *
      * @param string $lastName
-     * @param int    $case
+     * @param int $case
      * @param string $gender
      *
      * @return string
      *
-     * @throws Petrovich\RuntimeException
+     * @throws inflection\RuntimeException
      */
-    public function inflectLastName(string $lastName, int $case, string $gender) : string
+    public function inflectLastName(string $lastName, int $case, string $gender): string
     {
         return $this->ruleset->inflectLastName($lastName, $case, $gender);
     }
 
-    public static function parseFullName(string $fullName) : array
+    public static function parseFullName(string $fullName): array
     {
         $nameParts = \explode(' ', $fullName);
 
-        $lastName   = \array_shift($nameParts);
+        $lastName = \array_shift($nameParts);
         $middleName = \array_pop($nameParts);
-        $firstName  = \implode(' ', $nameParts);
+        $firstName = \implode(' ', $nameParts);
 
         if (empty($firstName)) {
             $firstName = $middleName;
@@ -147,8 +148,8 @@ class Petrovich
         }
 
         return [
-            'lastName'   => $lastName,
-            'firstName'  => $firstName,
+            'lastName' => $lastName,
+            'firstName' => $firstName,
             'middleName' => $middleName,
         ];
     }
